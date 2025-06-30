@@ -412,6 +412,8 @@ nav a.active::after {
     border-top: 4px solid var(--primary);
     overflow: hidden;
     /* Скрываем вылезающий контент */
+    overflow-wrap: break-word;
+    word-break: break-word;
 }
 
 .info-card:hover {
@@ -428,6 +430,7 @@ nav a.active::after {
     color: var(--primary);
     overflow-wrap: break-word;
     /* Перенос длинных слов */
+    hyphens: auto;
 }
 
 .info-card ul {
@@ -1210,10 +1213,36 @@ footer {
     .mobile-menu {
         display: none;
     }
+
+    .info-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .info-card {
+        padding: 15px;
+    }
 }
 
 /* Адаптация для мобильных */
 @media (max-width: 768px) {
+
+    .info-grid {
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        /* Уменьшено с 380px */
+    }
+
+    .info-card h3 {
+        font-size: 1.2rem;
+        /* Уменьшенный размер заголовка */
+    }
+
+    .info-card li {
+        font-size: 0.9rem;
+        /* Уменьшенный размер текста */
+        margin-bottom: 6px;
+        /* Уменьшенный отступ */
+    }
+
     .hero-content {
         flex-direction: column;
         text-align: center;
@@ -1261,6 +1290,35 @@ footer {
 }
 
 @media (max-width: 480px) {
+
+    .info-grid {
+        grid-template-columns: 1fr;
+        /* Всегда 1 колонка на маленьких экранах */
+    }
+
+    .info-card {
+        padding: 12px 10px;
+        /* Уменьшенные отступы */
+    }
+
+    .info-card h3 {
+        font-size: 1.1rem;
+        flex-wrap: wrap;
+        /* Разрешить перенос слов в заголовке */
+    }
+
+    .categories {
+        grid-template-columns: 1fr;
+        /* Одна колонка для категорий */
+    }
+
+    .items span {
+        padding: 4px 8px;
+        /* Уменьшенные отступы для элементов */
+        font-size: 0.8rem;
+        /* Уменьшенный размер шрифта */
+    }
+
     #app {
         padding: 75px 10px 10px;
     }
@@ -1338,6 +1396,19 @@ footer {
 }
 
 @media (max-width: 360px) {
+
+    .info-card {
+        padding: 10px 8px;
+    }
+
+    .info-card h3 {
+        font-size: 1rem;
+    }
+
+    .info-card li {
+        font-size: 0.85rem;
+    }
+
     .game-board {
         grid-template-columns: repeat(3, 1fr);
         max-width: 260px;
