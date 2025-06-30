@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UPIGAME - Учимся играя!</title>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./style.css">
+  <link rel="short icon" href="./img/иконка.svg">
+</head>
+
+<body>
+  <div id="app">
+    <!-- Header -->
+    <header>
+      <div class="logo"  @click="goHome">
+        <!-- Котик-маскот -->
+        <img src="./img/лого.svg" alt="">
+      </div>
+      <nav class="desktop-nav">
+        <a :class="{ active: currentPage === 'home' }" @click="currentPage = 'home'">
+          Главная
+        </a>
+        <a :class="{ active: currentPage === 'info' }" @click="currentPage = 'info'">
+          Для родителей
+        </a>
+        <a :class="{ active: currentPage === 'game' }" @click="currentPage = 'game'">
+          Игры
+        </a>
+      </nav>
+      <button class="theme-toggle" @click="toggleTheme">
+        {{ themeIcon }}
+      </button>
+    </header>
+
+    <!-- Мобильное меню -->
+    <div class="mobile-menu" :class="{ open: mobileMenuOpen }">
+      <a :class="{ active: currentPage === 'home' }" @click="currentPage = 'home'; mobileMenuOpen = false">
+        Главная
+      </a>
+      <a :class="{ active: currentPage === 'info' }" @click="currentPage = 'info'; mobileMenuOpen = false">
+        Для родителей
+      </a>
+      <a :class="{ active: currentPage === 'game' }" @click="currentPage = 'game'; mobileMenuOpen = false">
+        Игры
+      </a>
+    </div>
+
+    <!-- Кнопка бургера -->
+    <button class="mobile-menu-toggle" @click="mobileMenuOpen = !mobileMenuOpen" 
+            :class="{ open: mobileMenuOpen }">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <!-- Home Page -->
+    <div class="home" v-if="currentPage === 'home'">
+      <div class="hero">
+        <div class="hero-content">
+          <div class="hero-text">
+            <h1>Учимся играя с UPIGAME!</h1>
+            <p>Развивающие игры для детей 5-7 лет с милым котиком-помощником</p>
+            <button class="btn" @click="currentPage = 'game'">Начать играть!</button>
+          </div>
+
+          <div class="hero-animation">
+            <img src="./img/vecteezy_cute-cat-3d-rendering-icon-illustration_28572638.png" class="moving-cat"
+              alt="Рыжий кот">
+          </div>
+        </div>
+      </div>
+
+      <div class="sections">
+        <div class="section-card" @click="currentPage = 'info'">
+          <div class="icon">📚</div>
+          <h3>Для родителей</h3>
+          <p>Методические материалы, советы и рекомендации по развитию речи у детей</p>
+        </div>
+
+        <div class="section-card" @click="currentPage = 'game'">
+          <div class="icon">🎮</div>
+          <h3>Игры для детей</h3>
+          <p>Развивающие игры для тренировки памяти, внимания и речи</p>
+        </div>
+      </div>
+
+      <div class="features">
+        <div class="feature">
+          <div class="feature-icon">🧠</div>
+          <h4>Развитие речи</h4>
+          <p>Игры помогут расширить словарный запас и улучшить произношение</p>
+        </div>
+        <div class="feature">
+          <div class="feature-icon">🌟</div>
+          <h4>Тренировка памяти</h4>
+          <p>Упражнения на внимание и запоминание для дошкольников</p>
+        </div>
+        <div class="feature">
+          <div class="feature-icon">😊</div>
+          <h4>Веселое обучение</h4>
+          <p>Яркий дизайн и дружелюбный персонаж делают обучение увлекательным</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Info Section -->
+    <div class="info" v-if="currentPage === 'info'">
+      <div class="info-header">
+        <h2>Для родителей и педагогов</h2>
+        <p>Методические материалы и рекомендации по развитию речи у детей 5-7 лет</p>
+      </div>
+
+      <div class="info-grid">
+        <div class="info-card">
+          <h3>👶 Почему важны речевые игры?</h3>
+          <p>Игры для развития речи помогают детям:</p>
+          <ul>
+            <li>Расширять словарный запас</li>
+            <li>Развивать фонематический слух</li>
+            <li>Улучшать произношение звуков</li>
+            <li>Формировать грамматические навыки</li>
+            <li>Развивать связную речь</li>
+          </ul>
+        </div>
+
+        <div class="info-card">
+          <h3>🎮 Как играть с детьми?</h3>
+          <p>Простые игровые методики для домашних занятий:</p>
+          <ul>
+            <li>Назови ласково (стул → стульчик)</li>
+            <li>Один-много (яблоко → яблоки)</li>
+            <li>Что лишнее? (яблоко, груша, стол, апельсин)</li>
+            <li>Скажи наоборот (большой → маленький)</li>
+            <li>Придумай рифму (кот - рот, дом - гном)</li>
+          </ul>
+        </div>
+
+        <div class="info-card">
+          <h3>📝 Основные темы занятий</h3>
+          <p>Рекомендуемые лексические темы для детей 5-7 лет:</p>
+          <ul>
+            <li>Семья и дом</li>
+            <li>Животные и растения</li>
+            <li>Времена года</li>
+            <li>Профессии</li>
+            <li>Транспорт</li>
+            <li>Посуда и мебель</li>
+          </ul>
+        </div>
+
+        <div class="info-card">
+          <h3>💡 Советы родителям</h3>
+          <p>Как сделать занятия эффективными и интересными:</p>
+          <ul>
+            <li>Занимайтесь регулярно по 15-20 минут</li>
+            <li>Используйте игровую форму</li>
+            <li>Хвалите за успехи</li>
+            <li>Используйте наглядные материалы</li>
+            <li>Создайте позитивную атмосферу</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="vocabulary">
+        <h3>Базовый словарь для занятий</h3>
+        <div class="categories">
+          <div class="category">
+            <h4>Дом и семья</h4>
+            <div class="items">
+              <span>мама</span>
+              <span>папа</span>
+              <span>дом</span>
+              <span>комната</span>
+              <span>кухня</span>
+              <span>окно</span>
+              <span>дверь</span>
+              <span>стол</span>
+              <span>стул</span>
+            </div>
+          </div>
+          <div class="category">
+            <h4>Животные</h4>
+            <div class="items">
+              <span>кошка</span>
+              <span>собака</span>
+              <span>птица</span>
+              <span>рыба</span>
+              <span>заяц</span>
+              <span>лиса</span>
+              <span>медведь</span>
+              <span>слон</span>
+            </div>
+          </div>
+          <div class="category">
+            <h4>Еда</h4>
+            <div class="items">
+              <span>яблоко</span>
+              <span>хлеб</span>
+              <span>молоко</span>
+              <span>суп</span>
+              <span>каша</span>
+              <span>сок</span>
+              <span>конфета</span>
+              <span>печенье</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Game Section -->
+    <div class="game-section" v-if="currentPage === 'game'">
+      <div class="section-header">
+        <h2>Развивающие игры</h2>
+        <p>Выберите игру и начните веселое обучение с КотоЗнайкой!</p>
+      </div>
+
+      <div class="games-grid">
+        <div class="game-card" @click="selectedGame = 'memory'; startGame()">
+          <div class="game-icon">🧩</div>
+          <h3>Найди пару</h3>
+          <p>Тренируем память и внимание</p>
+        </div>
+
+        <div class="game-card" @click="selectedGame = 'missingLetter'; startMissingLetterGame()">
+          <div class="game-icon">🔤</div>
+          <h3>Угадай букву</h3>
+          <p>Вставь пропущенную букву</p>
+        </div>
+
+        <div class="game-card" @click="selectedGame = 'syllables'; startSyllablesGame()">
+          <div class="game-icon">🔠</div>
+          <h3>Собери слово</h3>
+          <p>Составь слово из слогов</p>
+        </div>
+
+        <div class="game-card" @click="selectedGame = 'sorting'; startSortingGame()">
+          <div class="game-icon">📦</div>
+          <h3>Что куда?</h3>
+          <p>Сортировка предметов</p>
+        </div>
+      </div>
+
+      <!-- Memory Game -->
+      <div class="game-container" v-if="selectedGame === 'memory'">
+        <div class="game-header">
+          <h3>Найди парные карточки 🧩</h3>
+          <div class="stats">
+            <div>Ходы: {{ gameState.moves }}</div>
+            <div>Найдено: {{ gameState.matchedPairs }}/{{ gameState.totalPairs }}</div>
+          </div>
+        </div>
+
+        <div class="game-content">
+          <div v-if="!gameState.gameStarted" class="start-screen">
+            <p>Найди все парные карточки! Кликай на карточки, чтобы перевернуть их.</p>
+            <button class="btn" @click="startGame">Начать игру</button>
+          </div>
+
+          <div v-else-if="gameState.gameCompleted" class="win-screen">
+            <h2>🎉 Ура! Ты нашёл все пары! 🎉</h2>
+            <p>Ты справился за {{ gameState.moves }} ходов!</p>
+            <button class="btn" @click="resetGame">Играть ещё раз</button>
+          </div>
+
+          <div v-else class="memory-game-container">
+            <div class="game-board">
+              <div v-for="(card, index) in gameState.cards" :key="index" class="memory-card" :class="{ 
+                  'flipped': card.isFlipped, 
+                  'matched': card.isMatched 
+                }" @click="flipCard(index)">
+                <div class="memory-card-inner">
+                  <div class="card-front">?</div>
+                  <div class="card-back">{{ card.value }}</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="cat-character">
+          <div class="cat-icon">😺</div>
+          <div class="cat-message">
+            {{ gameState.feedbackMessage }}
+          </div>
+        </div>
+      </div>
+
+      <!-- Missing Letter Game -->
+      <div class="game-container" v-if="selectedGame === 'missingLetter'">
+        <div class="game-header">
+          <h3>Угадай пропущенную букву 🔤</h3>
+          <div class="stats">
+            <div>Слово: {{ missingLetterGame.currentIndex + 1 }}/{{ missingLetterGame.words.length }}</div>
+          </div>
+        </div>
+
+        <div class="game-content">
+          <div v-if="missingLetterGame.currentWord">
+            <div class="word-display">
+              {{ missingLetterGame.displayWord }}
+            </div>
+
+            <div class="letter-options">
+              <button v-for="(option, index) in missingLetterGame.options" :key="index" class="letter-option" :class="{
+                  'correct': missingLetterGame.selectedOption === option && missingLetterGame.isCorrect,
+                  'incorrect': missingLetterGame.selectedOption === option && !missingLetterGame.isCorrect
+                }" @click="checkMissingLetter(option)" :disabled="missingLetterGame.isCorrect">
+                {{ option }}
+              </button>
+            </div>
+
+            <div v-if="missingLetterGame.answered" class="result-message"
+              :class="missingLetterGame.isCorrect ? 'correct' : 'incorrect'">
+              <div v-if="missingLetterGame.isCorrect">
+                ✅ Правильно! Это слово "{{ missingLetterGame.currentWord }}"
+              </div>
+              <div v-else>
+                ❌ Неправильно. Попробуй другую букву!
+              </div>
+              <button class="btn" @click="nextMissingLetter" v-if="missingLetterGame.isCorrect">Следующее слово</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="cat-character">
+          <div class="cat-icon">😼</div>
+          <div class="cat-message">
+            Вставь правильную букву в слово!
+          </div>
+        </div>
+      </div>
+
+      <!-- Syllables Game -->
+      <div class="game-container" v-if="selectedGame === 'syllables'">
+        <div class="game-header">
+          <h3>Составь слово из слогов 🔠</h3>
+          <div class="stats">
+            <div>Слово: {{ syllablesGame.currentIndex + 1 }}/{{ syllablesGame.words.length }}</div>
+          </div>
+        </div>
+
+        <div class="game-content">
+          <div v-if="syllablesGame.currentWord">
+            <h2 class="word-preview">
+              Собери слово: <strong>{{ syllablesGame.currentWord }}</strong>
+            </h2>
+
+            <div class="syllables-container">
+              <button v-for="(syllable, index) in syllablesGame.shuffledSyllables" :key="'option-'+index"
+                class="syllable-option" @click="selectSyllable(syllable)"
+                :disabled="syllablesGame.selectedSyllables.includes(syllable)">
+                {{ syllable }}
+              </button>
+            </div>
+
+            <div class="selected-syllables">
+              <div v-for="(slot, index) in syllablesGame.syllables" :key="'slot-'+index" class="syllable-slot"
+                :class="{ 'filled-slot': syllablesGame.selectedSyllables[index] }" @click="removeSyllable(index)">
+                {{ syllablesGame.selectedSyllables[index] || '?' }}
+              </div>
+            </div>
+
+            <button class="btn" @click="checkSyllablesWord"
+              :disabled="syllablesGame.selectedSyllables.length < syllablesGame.syllables.length">
+              Проверить
+            </button>
+
+            <div v-if="syllablesGame.checked" class="result-message"
+              :class="syllablesGame.isCorrect ? 'correct' : 'incorrect'">
+              <div v-if="syllablesGame.isCorrect">
+                ✅ Отлично! Ты правильно собрал слово!
+              </div>
+              <div v-else>
+                ❌ Неправильно. Попробуй еще!
+              </div>
+              <button class="btn" @click="nextSyllables">Следующее слово</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="cat-character">
+          <div class="cat-icon">😸</div>
+          <div class="cat-message">
+            Перетащи слоги в правильном порядке!
+          </div>
+        </div>
+      </div>
+
+      <!-- Sorting Game -->
+      <div class="game-container" v-if="selectedGame === 'sorting'">
+        <div class="game-header">
+          <h3>Что куда? 📦</h3>
+          <div class="stats">
+            <div>Предметы: {{ sortingGame.placedItems }}/{{ sortingGame.items.length }}</div>
+          </div>
+        </div>
+
+        <div class="game-content">
+          <div class="sorting-rooms">
+            <div v-for="(room, index) in sortingGame.rooms" :key="index" class="room"
+              :class="{ 'active': sortingGame.selectedItem && sortingGame.selectedRoom === room.id }"
+              @click="placeItem(room.id)">
+              <div class="room-header">
+                <div class="room-icon">{{ room.icon }}</div>
+                <h3>{{ room.name }}</h3>
+              </div>
+              <div class="room-items">
+                <div v-for="(item, idx) in sortingGame.items.filter(i => i.room === room.id)" :key="idx"
+                  class="sorting-item" @click.stop="selectItem(item.id)">
+                  <div class="item-icon">{{ item.icon }}</div>
+                  <div class="item-name">{{ item.name }}</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="sorting-items">
+            <div v-for="(item, index) in sortingGame.items" :key="index" class="sorting-item"
+              :class="{ 'selected': sortingGame.selectedItem === item.id }" @click="selectItem(item.id)"
+              v-show="!item.placed">
+              <div class="item-icon">{{ item.icon }}</div>
+              <div class="item-name">{{ item.name }}</div>
+            </div>
+          </div>
+
+          <div class="sorting-result">
+            <button class="btn" @click="checkSorting">Проверить</button>
+            <button class="btn btn-outline" @click="resetSorting">Начать заново</button>
+
+            <div v-if="sortingGame.checked" class="result-message"
+              :class="sortingGame.allCorrect ? 'correct' : 'incorrect'">
+              <div v-if="sortingGame.allCorrect">
+                ✅ Отлично! Все предметы на своих местах!
+              </div>
+              <div v-else>
+                ❌ Ой, некоторые предметы не на своих местах! Попробуй еще раз.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="cat-character">
+          <div class="cat-icon">🙀</div>
+          <div class="cat-message">
+            Помоги мне разложить предметы по комнатам!
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+      <div class="footer-logo">UPIGAME</div>
+      <p>Развивающие игры для детей дошкольного возраста</p>
+      <p>© 2025 Все права защищены</p>
+    </footer>
+  </div>
+
+  <script src="./script.js"></script>
+</body>
+
+</html>
