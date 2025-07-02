@@ -400,7 +400,7 @@ nav a.active::after {
 
 .info-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)) !important ;
     gap: 20px;
 }
 
@@ -933,6 +933,7 @@ footer {
 .filled-slot {
     background: #c8e6c9;
     border: none;
+    color: #121220;
 }
 
 /* Sorting Game */

@@ -15,7 +15,7 @@
   <div id="app">
     <!-- Header -->
     <header>
-      <div class="logo"  @click="goHome">
+      <div class="logo" @click="goHome">
         <!-- Котик-маскот -->
         <img src="./img/лого.svg" alt="">
       </div>
@@ -49,8 +49,7 @@
     </div>
 
     <!-- Кнопка бургера -->
-    <button class="mobile-menu-toggle" @click="mobileMenuOpen = !mobileMenuOpen" 
-            :class="{ open: mobileMenuOpen }">
+    <button class="mobile-menu-toggle" @click="mobileMenuOpen = !mobileMenuOpen" :class="{ open: mobileMenuOpen }">
       <span></span>
       <span></span>
       <span></span>
@@ -284,7 +283,7 @@
         <div class="cat-character">
           <div class="cat-icon">😺</div>
           <div class="cat-message">
-            {{ gameState.feedbackMessage }}
+            Молодец! Продолжай в том же духе!
           </div>
         </div>
       </div>
